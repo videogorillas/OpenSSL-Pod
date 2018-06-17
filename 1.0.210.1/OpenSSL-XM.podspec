@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name            = "OpenSSL-XM"
   s.version         = "1.0.210.1"
-  s.summary         = "OpenSSL is an SSL/TLS and Crypto toolkit. Deprecated in Mac OS and gone in iOS, this spec gives your project non-deprecated OpenSSL support."
+  s.summary         = "OpenSSL is an SSL/TLS and Crypto toolkit. Deprecated in Mac OS and gone in iOS, this spec gives your project non-deprecated OpenSSL support.Fork from FredericJacobs's repo"
   s.author          = "OpenSSL Project <openssl-dev@openssl.org>"
 
   s.homepage        = "https://github.com/Mamong/OpenSSL-Pod"
@@ -17,20 +17,23 @@ Pod::Spec.new do |s|
 
     BASEPATH="${PWD}"
     CURRENTPATH="/tmp/openssl"
+    #CURRENTPATH="${PWD}/tmp"
+
     ARCHS="i386 x86_64 armv7 armv7s arm64"
     DEVELOPER=`xcode-select -print-path`
 
-    mkdir -p "${CURRENTPATH}"
-    mkdir -p "${CURRENTPATH}/bin"
 
-    cp -rf "${BASEPATH}/" "${CURRENTPATH}/openssl-${VERSION}"  
-    #cp "file.tgz" "${CURRENTPATH}/file.tgz"  
-    cd "${CURRENTPATH}"  
-    #tar -xzf file.tgz  
+    mkdir -p "${CURRENTPATH}"
+    mkdir -p "${CURRENTPATH}/bin"    
+
+    cp -rf "${BASEPATH}/" "${CURRENTPATH}/openssl-${VERSION}"
+    #cp "file.tgz" "${CURRENTPATH}/file.tgz"
+    cd "${CURRENTPATH}"
+    #tar -xzf file.tgz
     cd "openssl-${VERSION}"
 
     for ARCH in ${ARCHS}
-   
+    do
       CONFIGURE_FOR="iphoneos-cross"
 
       if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ] ;
